@@ -1,1 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GI Technology</title>
 
+<style>
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+  background:#0b1120;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* FUNDO TECNOLÓGICO ANIMADO */
+body::before{
+  content:"";
+  position:fixed;
+  width:200%;
+  height:200%;
+  background: radial-gradient(circle at 20% 30%, rgba(0,140,255,0.15), transparent 40%),
+              radial-gradient(circle at 80% 70%, rgba(0,90,200,0.15), transparent 40%);
+  animation: moveBackground 40s linear infinite;
+  z-index:-1;
+}
+
+@keyframes moveBackground{
+  from{ transform: translate(0,0); }
+  to{ transform: translate(-25%, -25%); }
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.logo{
+  width:200px;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-size:50px;
+  font-weight:700;
+}
+
+.hero p{
+  margin-top:20px;
+  font-size:20px;
+  max-width:700px;
+  opacity:0.85;
+}
+
+.btn{
+  margin-top:30px;
+  padding:15px 35px;
+  background:linear-gradient(90deg,#0066ff,#00aaff);
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  color:white;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 10px 30px rgba(0,102,255,0.5);
+}
+
+/* SEÇÕES */
+section{
+  padding:100px 20px;
+  text-align:center;
+}
+
+section h2{
+  font-size:38px;
+  margin-bottom:20px;
+}
+
+section p{
+  max-width:700px;
+  margin:0 auto;
+  opacity:0.8;
+}
+
+/* SERVIÇOS */
+.services{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:30px;
+  margin-top:50px;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  padding:30px;
+  width:280px;
+  border-radius:15px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  background:rgba(0,102,255,0.1);
+}
+
+.card h3{
+  margin-bottom:15px;
+}
+
+/* CTA FINAL */
+.cta{
+  background:linear-gradient(135deg,#001f4d,#003b8f);
+  padding:80px 20px;
+}
+
+.cta h2{
+  margin-bottom:20px;
+}
+
+footer{
+  padding:30px;
+  text-align:center;
+  opacity:0.6;
+  background:#0f172a;
+}
+
+/* RESPONSIVO */
+@media(max-width:768px){
+  .hero h1{
+    font-size:32px;
+  }
+  .services{
+    flex-direction:column;
+    align-items:center;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+  <img src="COLOQUE_AQUI_O_LINK_DA_SUA_LOGO_GI" class="logo">
+  <h1>Desenvolvimento de Sistemas e Soluções Digitais</h1>
+  <p>Criamos softwares, sistemas web e soluções tecnológicas sob medida para empresas que desejam crescer com eficiência e inovação.</p>
+  <a href="https://wa.me/5513996068418" target="_blank" class="btn">Solicitar Projeto</a>
+</div>
+
+<section>
+  <h2>Quem Somos</h2>
+  <p>A GI Technology é especializada no desenvolvimento de sistemas personalizados, automações empresariais e soluções digitais de alto desempenho.</p>
+</section>
+
+<section>
+  <h2>Nossas Soluções</h2>
+  <div class="services">
+    <div class="card">
+      <h3>Sistemas Web</h3>
+      <p>Plataformas personalizadas para gestão e operação empresarial.</p>
+    </div>
+
+    <div class="card">
+      <h3>Automação de Processos</h3>
+      <p>Reduza custos e aumente produtividade com tecnologia inteligente.</p>
+    </div>
+
+    <div class="card">
+      <h3>Desenvolvimento Sob Medida</h3>
+      <p>Soluções exclusivas para necessidades específicas do seu negócio.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <h2>Pronto para transformar sua empresa com tecnologia?</h2>
+  <a href="https://wa.me/5513996068418" target="_blank" class="btn">Fale Conosco</a>
+</div>
+
+<footer>
+  © 2026 GI Technology - Todos os direitos reservados.
+</footer>
+
+</body>
+</html>
