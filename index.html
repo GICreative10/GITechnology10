@@ -158,11 +158,45 @@ section p{
   padding:80px 20px;
 }
 
+/* FOOTER */
 footer{
   padding:30px;
   text-align:center;
-  opacity:0.8;
   background:#0f172a;
+  opacity:0.9;
+}
+
+.social{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:30px;
+}
+
+.social a{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.social svg{
+  width:20px;
+  height:20px;
+}
+
+.instagram{
+  color:#E1306C;
+}
+
+.whatsapp{
+  color:#25D366;
+}
+
+.social a:hover{
+  transform:scale(1.08);
 }
 
 /* RESPONSIVO */
@@ -311,13 +345,21 @@ footer{
 <footer>
   © 2026 GI Technology - Todos os direitos reservados.
 
-  <div style="margin-top:15px;">
-    <a href="https://instagram.com/gitechnology" target="_blank" style="color:#00aaff; margin-right:15px; text-decoration:none; font-weight:bold;">
-      📸 Instagram
+  <div class="social">
+    <a href="https://instagram.com/gitechnology" target="_blank" class="instagram">
+      <!-- SVG Instagram -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-2.75a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"/>
+      </svg>
+      Instagram
     </a>
 
-    <a href="https://wa.me/5513996068418" target="_blank" style="color:#00ff9d; text-decoration:none; font-weight:bold;">
-      💬 WhatsApp
+    <a href="https://wa.me/5513996068418" target="_blank" class="whatsapp">
+      <!-- SVG WhatsApp -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 2a10 10 0 00-8.94 14.47L2 22l5.7-1.5A10 10 0 1012 2z"/>
+      </svg>
+      WhatsApp
     </a>
   </div>
 </footer>
@@ -327,7 +369,7 @@ footer{
 </div>
 
 <button id="chatButton">
-  <img src="https://i.postimg.cc/XJ3Z3r1Z/37F86CB4-66CF-4F9E-A917-4A0B25CF7C75.png" alt="Assistente Virtual GI Tech">
+  <img src="https://i.postimg.cc/XJ3Z3r1Z/37F86CB4-66CF-4F9E-A917-4A0B25CF7C75.png">
 </button>
 
 <iframe
@@ -351,13 +393,9 @@ window.addEventListener("load", () => {
   }, 8500);
 });
 
-/* Pulsar apenas a cada 20 segundos */
 function pulseEffect(){
   button.style.animation = "pulse 2s ease-in-out";
-
-  setTimeout(() => {
-    button.style.animation = "";
-  }, 2000);
+  setTimeout(() => { button.style.animation = ""; }, 2000);
 }
 
 setTimeout(pulseEffect, 3000);
