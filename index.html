@@ -12,154 +12,178 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:Arial, Helvetica, sans-serif;
-  scroll-behavior:smooth;
+  font-family:'Segoe UI',sans-serif;
 }
 
 body{
   background:#0a0f1f;
   color:white;
+  overflow-x:hidden;
 }
 
-/* HEADER */
-header{
-  position:fixed;
-  width:100%;
-  padding:20px 10%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:rgba(10,15,31,0.8);
-  backdrop-filter:blur(10px);
-  z-index:1000;
+/* FUNDO GRID TECNOLÓGICO */
+.tech-grid {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #0a0f1f;
+  overflow: hidden;
+  z-index: -1;
 }
 
-header h2{
-  color:#00c6ff;
+.tech-grid::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    linear-gradient(rgba(0, 140, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 140, 255, 0.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridMove 25s linear infinite;
 }
 
-nav a{
-  color:white;
-  text-decoration:none;
-  margin-left:20px;
-  font-size:14px;
-  transition:0.3s;
+.tech-grid::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(0, 140, 255, 0.2), transparent 70%);
 }
 
-nav a:hover{
-  color:#00c6ff;
+@keyframes gridMove {
+  from { transform: translate(0,0); }
+  to { transform: translate(-60px,-60px); }
 }
 
 /* HERO */
 .hero{
   height:100vh;
   display:flex;
+  flex-direction:column;
   justify-content:center;
   align-items:center;
-  flex-direction:column;
   text-align:center;
-  padding:0 10%;
+  padding:20px;
+}
+
+.logo{
+  width:220px;
+  margin-bottom:25px;
 }
 
 .hero h1{
   font-size:48px;
-  background:linear-gradient(90deg,#00c6ff,#0072ff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  font-weight:700;
 }
 
 .hero p{
   margin-top:20px;
-  font-size:18px;
-  opacity:0.8;
+  font-size:20px;
   max-width:700px;
+  opacity:0.85;
 }
 
-/* BOTÃO */
 .btn{
-  margin-top:30px;
-  padding:12px 28px;
+  margin-top:35px;
+  padding:15px 35px;
+  background:linear-gradient(90deg,#0066ff,#00aaff);
   border:none;
-  border-radius:30px;
-  background:linear-gradient(90deg,#00c6ff,#0072ff);
+  border-radius:8px;
+  font-weight:bold;
   color:white;
-  cursor:pointer;
-  font-size:14px;
+  text-decoration:none;
   transition:0.3s;
 }
 
 .btn:hover{
-  transform:scale(1.05);
+  transform:scale(1.07);
+  box-shadow:0 10px 30px rgba(0,102,255,0.6);
 }
 
-/* SECTIONS */
+/* SEÇÕES */
 section{
-  padding:100px 10%;
+  padding:100px 20px;
+  text-align:center;
 }
 
-.section-title{
-  font-size:32px;
-  margin-bottom:40px;
-  color:#00c6ff;
+section h2{
+  font-size:36px;
+  margin-bottom:20px;
+}
+
+section p{
+  max-width:700px;
+  margin:0 auto;
+  opacity:0.8;
 }
 
 /* SERVIÇOS */
 .services{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
   gap:30px;
+  margin-top:50px;
 }
 
 .card{
-  background:#11183a;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
   padding:30px;
+  width:280px;
   border-radius:15px;
   transition:0.3s;
 }
 
 .card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 10px 40px rgba(0,114,255,0.4);
+  transform:translateY(-10px);
+  background:rgba(0,102,255,0.15);
 }
 
-/* CONTATO */
-.contact{
-  text-align:center;
+.card h3{
+  margin-bottom:15px;
 }
 
-.contact a{
-  color:#00c6ff;
-  text-decoration:none;
+/* CTA FINAL */
+.cta{
+  background:linear-gradient(135deg,#001f4d,#003b8f);
+  padding:80px 20px;
 }
 
-/* FOOTER */
 footer{
-  text-align:center;
   padding:30px;
-  background:#070b18;
-  font-size:14px;
-  opacity:0.7;
+  text-align:center;
+  opacity:0.6;
+  background:#0f172a;
 }
 
-/* ================= CHAT GI TECH ================= */
-
-#chatButton{
-  position:fixed;
-  bottom:25px;
-  right:25px;
-  width:72px;
-  height:72px;
-  border:none;
-  border-radius:50%;
-  cursor:pointer;
-  overflow:hidden;
-  z-index:9999;
-  box-shadow:0 10px 30px rgba(0,140,255,0.4);
-  transition:0.3s;
+/* RESPONSIVO */
+@media(max-width:768px){
+  .hero h1{
+    font-size:32px;
+  }
+  .services{
+    flex-direction:column;
+    align-items:center;
+  }
 }
 
-#chatButton:hover{
-  transform:scale(1.08);
+/* ================= CHATBOT ================= */
+
+#chatButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+  z-index: 9999;
+  animation: pulse 2s infinite;
 }
 
 #chatButton img{
@@ -169,47 +193,73 @@ footer{
   border-radius:50%;
 }
 
+/* Bolinha verde online */
 #chatButton::after{
-  content:"";
-  position:absolute;
-  bottom:6px;
-  right:6px;
-  width:14px;
-  height:14px;
-  background:#00ff66;
-  border-radius:50%;
-  border:3px solid #0a0f1f;
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  width: 16px;
+  height: 16px;
+  background: #00ff4c;
+  border-radius: 50%;
+  border: 3px solid #0a0f1f;
 }
 
+/* Pulsar */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0,140,255,0.7); }
+  70% { box-shadow: 0 0 0 20px rgba(0,140,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,140,255,0); }
+}
+
+/* Balão informativo */
 #chatBubble{
-  position:fixed;
-  bottom:115px;
-  right:25px;
-  background:white;
-  color:#111;
-  padding:12px 16px;
-  border-radius:16px;
-  font-size:14px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  position: fixed;
+  bottom: 115px;
+  right: 20px;
+  background: linear-gradient(135deg,#0066ff,#00aaff);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.4s;
+  max-width: 240px;
 }
 
-#chatFrame{
-  position:fixed;
-  bottom:110px;
-  right:25px;
-  width:370px;
-  height:520px;
-  border:none;
-  border-radius:18px;
-  box-shadow:0 20px 60px rgba(0,0,0,0.5);
-  display:none;
+#chatBubble::after{
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  right: 25px;
+  width: 15px;
+  height: 15px;
+  background: #008cff;
+  transform: rotate(45deg);
+}
+
+#chatFrame {
+  position: fixed;
+  bottom: 110px;
+  right: 20px;
+  width: 360px;
+  height: 520px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  display: none;
+  z-index: 9999;
 }
 
 @media(max-width:768px){
   #chatFrame{
-    width:94%;
-    right:3%;
-    height:70%;
+    width: 92%;
+    right: 4%;
+    height: 70%;
   }
 }
 
@@ -218,66 +268,61 @@ footer{
 
 <body>
 
-<header>
-  <h2>GI Technology</h2>
-  <nav>
-    <a href="#servicos">Serviços</a>
-    <a href="#sobre">Sobre</a>
-    <a href="#contato">Contato</a>
-  </nav>
-</header>
+<div class="tech-grid"></div>
 
 <div class="hero">
-  <h1>GI Technology</h1>
-  <p>Soluções em Sites, Sistemas e Inteligência Artificial para empresas que querem crescer no digital.</p>
-  <button class="btn">Solicitar Orçamento</button>
+  <img src="https://i.postimg.cc/HnrnR8TG/0F9CFA08-FF9C-4828-9FDD-E0586E74F73D.png" class="logo">
+  <h1>Desenvolvimento de Sistemas e Soluções Digitais</h1>
+  <p>Criamos softwares, sistemas web e soluções tecnológicas sob medida para empresas que desejam crescer com eficiência e inovação.</p>
+  <a href="https://wa.me/5513996068418" target="_blank" class="btn">Solicitar Projeto</a>
 </div>
 
-<section id="servicos">
-  <h2 class="section-title">Nossos Serviços</h2>
+<section>
+  <h2>Quem Somos</h2>
+  <p>A GI Technology é especializada no desenvolvimento de sistemas personalizados, automações empresariais e soluções digitais de alto desempenho.</p>
+</section>
+
+<section>
+  <h2>Nossas Soluções</h2>
   <div class="services">
     <div class="card">
-      <h3>Criação de Sites</h3>
-      <p>Sites modernos, rápidos e responsivos para sua empresa.</p>
-    </div>
-    <div class="card">
       <h3>Sistemas Web</h3>
-      <p>Desenvolvimento de plataformas e sistemas personalizados.</p>
+      <p>Plataformas personalizadas para gestão e operação empresarial.</p>
     </div>
     <div class="card">
-      <h3>Integração com IA</h3>
-      <p>Chatbots inteligentes e automações com Inteligência Artificial.</p>
+      <h3>Automação de Processos</h3>
+      <p>Reduza custos e aumente produtividade com tecnologia inteligente.</p>
+    </div>
+    <div class="card">
+      <h3>Desenvolvimento Sob Medida</h3>
+      <p>Soluções exclusivas para necessidades específicas do seu negócio.</p>
     </div>
   </div>
 </section>
 
-<section id="sobre">
-  <h2 class="section-title">Sobre a GI Technology</h2>
-  <p>Somos especializados no desenvolvimento de soluções digitais inovadoras, focando em performance, design e tecnologia de ponta.</p>
-</section>
-
-<section id="contato" class="contact">
-  <h2 class="section-title">Contato</h2>
-  <p>Email: contato@gitechnology.com</p>
-  <p>WhatsApp: (00) 00000-0000</p>
-</section>
-
-<footer>
-  © 2026 GI Technology — Todos os direitos reservados.
-</footer>
-
-<!-- CHAT -->
-<div id="chatBubble">
-  <strong>GI Tech</strong> está online digitando...
+<div class="cta">
+  <h2>Pronto para transformar sua empresa com tecnologia?</h2>
+  <a href="https://wa.me/5513996068418" target="_blank" class="btn">Fale Conosco</a>
 </div>
 
+<footer>
+  © 2026 GI Technology - Todos os direitos reservados.
+</footer>
+
+<!-- BALÃO -->
+<div id="chatBubble">
+  💬 Dúvidas? A GI Tech responde!
+</div>
+
+<!-- BOTÃO CHAT -->
 <button id="chatButton">
-  <img src="https://i.postimg.cc/XJ3Z3r1Z/37F86CB4-66CF-4F9E-A917-4A0B25CF7C75.png">
+  <img src="https://i.postimg.cc/XJ3Z3r1Z/37F86CB4-66CF-4F9E-A917-4A0B25CF7C75.png" alt="Assistente Virtual GI Tech">
 </button>
 
+<!-- IFRAME -->
 <iframe
   id="chatFrame"
-  src="https://cdn.botpress.cloud/webchat/v3.6/shareable.html?configUrl=https://files.bpcontent.cloud/2026/03/04/23/20260304232304-ZKJ43EGK.json&locale=pt-BR&placeholder=Digite%20sua%20mensagem...">
+  src="https://cdn.botpress.cloud/webchat/v3.6/shareable.html?configUrl=https://files.bpcontent.cloud/2026/03/04/23/20260304232304-ZKJ43EGK.json">
 </iframe>
 
 <script>
@@ -285,9 +330,20 @@ const button = document.getElementById("chatButton");
 const chat = document.getElementById("chatFrame");
 const bubble = document.getElementById("chatBubble");
 
-button.addEventListener("click",()=>{
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    bubble.style.opacity = "1";
+    bubble.style.transform = "translateY(0)";
+  }, 2500);
+
+  setTimeout(() => {
+    bubble.style.opacity = "0";
+  }, 8500);
+});
+
+button.addEventListener("click", () => {
   chat.style.display = chat.style.display === "block" ? "none" : "block";
-  bubble.style.display = "none";
+  bubble.style.opacity = "0";
 });
 </script>
 
