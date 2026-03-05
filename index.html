@@ -13,6 +13,7 @@
   padding:0;
   box-sizing:border-box;
   font-family:Arial, Helvetica, sans-serif;
+  scroll-behavior:smooth;
 }
 
 body{
@@ -20,7 +21,36 @@ body{
   color:white;
 }
 
-/* HERO EXEMPLO */
+/* HEADER */
+header{
+  position:fixed;
+  width:100%;
+  padding:20px 10%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(10,15,31,0.8);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+
+header h2{
+  color:#00c6ff;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:20px;
+  font-size:14px;
+  transition:0.3s;
+}
+
+nav a:hover{
+  color:#00c6ff;
+}
+
+/* HERO */
 .hero{
   height:100vh;
   display:flex;
@@ -28,24 +58,91 @@ body{
   align-items:center;
   flex-direction:column;
   text-align:center;
+  padding:0 10%;
 }
 
 .hero h1{
-  font-size:42px;
+  font-size:48px;
   background:linear-gradient(90deg,#00c6ff,#0072ff);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
 .hero p{
-  margin-top:15px;
+  margin-top:20px;
   font-size:18px;
   opacity:0.8;
+  max-width:700px;
 }
 
-/* ================= CHAT PREMIUM GI TECH ================= */
-
 /* BOTÃO */
+.btn{
+  margin-top:30px;
+  padding:12px 28px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(90deg,#00c6ff,#0072ff);
+  color:white;
+  cursor:pointer;
+  font-size:14px;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+}
+
+/* SECTIONS */
+section{
+  padding:100px 10%;
+}
+
+.section-title{
+  font-size:32px;
+  margin-bottom:40px;
+  color:#00c6ff;
+}
+
+/* SERVIÇOS */
+.services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+
+.card{
+  background:#11183a;
+  padding:30px;
+  border-radius:15px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 10px 40px rgba(0,114,255,0.4);
+}
+
+/* CONTATO */
+.contact{
+  text-align:center;
+}
+
+.contact a{
+  color:#00c6ff;
+  text-decoration:none;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  background:#070b18;
+  font-size:14px;
+  opacity:0.7;
+}
+
+/* ================= CHAT GI TECH ================= */
+
 #chatButton{
   position:fixed;
   bottom:25px;
@@ -57,15 +154,12 @@ body{
   cursor:pointer;
   overflow:hidden;
   z-index:9999;
-  opacity:0;
-  transform:translateY(30px) scale(0.9);
-  transition:0.4s ease;
   box-shadow:0 10px 30px rgba(0,140,255,0.4);
+  transition:0.3s;
 }
 
-#chatButton.show{
-  opacity:1;
-  transform:translateY(0) scale(1);
+#chatButton:hover{
+  transform:scale(1.08);
 }
 
 #chatButton img{
@@ -73,63 +167,32 @@ body{
   height:100%;
   object-fit:cover;
   border-radius:50%;
-  transition:0.3s;
 }
 
-#chatButton:hover{
-  transform:scale(1.08);
-  box-shadow:0 15px 40px rgba(0,140,255,0.7);
-}
-
-/* BOLINHA ONLINE */
 #chatButton::after{
   content:"";
   position:absolute;
   bottom:6px;
   right:6px;
-  width:15px;
-  height:15px;
+  width:14px;
+  height:14px;
   background:#00ff66;
   border-radius:50%;
   border:3px solid #0a0f1f;
 }
 
-/* BALÃO */
 #chatBubble{
   position:fixed;
   bottom:115px;
   right:25px;
   background:white;
   color:#111;
-  padding:14px 18px;
-  border-radius:18px;
+  padding:12px 16px;
+  border-radius:16px;
   font-size:14px;
   box-shadow:0 10px 30px rgba(0,0,0,0.2);
-  z-index:9999;
-  opacity:0;
-  transform:translateY(15px);
-  transition:0.4s ease;
 }
 
-#chatBubble.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.typing span{
-  animation:blink 1.4s infinite both;
-}
-
-.typing span:nth-child(2){animation-delay:0.2s;}
-.typing span:nth-child(3){animation-delay:0.4s;}
-
-@keyframes blink{
-  0%{opacity:.2}
-  20%{opacity:1}
-  100%{opacity:.2}
-}
-
-/* CHAT FRAME */
 #chatFrame{
   position:fixed;
   bottom:110px;
@@ -139,17 +202,7 @@ body{
   border:none;
   border-radius:18px;
   box-shadow:0 20px 60px rgba(0,0,0,0.5);
-  opacity:0;
-  transform:scale(0.8);
-  transition:0.3s ease;
-  z-index:9999;
-  pointer-events:none;
-}
-
-#chatFrame.open{
-  opacity:1;
-  transform:scale(1);
-  pointer-events:auto;
+  display:none;
 }
 
 @media(max-width:768px){
@@ -165,63 +218,77 @@ body{
 
 <body>
 
+<header>
+  <h2>GI Technology</h2>
+  <nav>
+    <a href="#servicos">Serviços</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
 <div class="hero">
   <h1>GI Technology</h1>
-  <p>Soluções em Sites, Sistemas e Inteligência Artificial</p>
+  <p>Soluções em Sites, Sistemas e Inteligência Artificial para empresas que querem crescer no digital.</p>
+  <button class="btn">Solicitar Orçamento</button>
 </div>
 
-<!-- BALÃO -->
+<section id="servicos">
+  <h2 class="section-title">Nossos Serviços</h2>
+  <div class="services">
+    <div class="card">
+      <h3>Criação de Sites</h3>
+      <p>Sites modernos, rápidos e responsivos para sua empresa.</p>
+    </div>
+    <div class="card">
+      <h3>Sistemas Web</h3>
+      <p>Desenvolvimento de plataformas e sistemas personalizados.</p>
+    </div>
+    <div class="card">
+      <h3>Integração com IA</h3>
+      <p>Chatbots inteligentes e automações com Inteligência Artificial.</p>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <h2 class="section-title">Sobre a GI Technology</h2>
+  <p>Somos especializados no desenvolvimento de soluções digitais inovadoras, focando em performance, design e tecnologia de ponta.</p>
+</section>
+
+<section id="contato" class="contact">
+  <h2 class="section-title">Contato</h2>
+  <p>Email: contato@gitechnology.com</p>
+  <p>WhatsApp: (00) 00000-0000</p>
+</section>
+
+<footer>
+  © 2026 GI Technology — Todos os direitos reservados.
+</footer>
+
+<!-- CHAT -->
 <div id="chatBubble">
-  <strong>GI Tech</strong> está online<br>
-  <span class="typing">
-    digitando<span>.</span><span>.</span><span>.</span>
-  </span>
+  <strong>GI Tech</strong> está online digitando...
 </div>
 
-<!-- BOTÃO -->
 <button id="chatButton">
-  <img src="https://i.postimg.cc/XJ3Z3r1Z/37F86CB4-66CF-4F9E-A917-4A0B25CF7C75.png" alt="Assistente Virtual GI Tech">
+  <img src="https://i.postimg.cc/XJ3Z3r1Z/37F86CB4-66CF-4F9E-A917-4A0B25CF7C75.png">
 </button>
 
-<!-- CHAT BOT -->
 <iframe
   id="chatFrame"
   src="https://cdn.botpress.cloud/webchat/v3.6/shareable.html?configUrl=https://files.bpcontent.cloud/2026/03/04/23/20260304232304-ZKJ43EGK.json&locale=pt-BR&placeholder=Digite%20sua%20mensagem...">
 </iframe>
 
 <script>
-
 const button = document.getElementById("chatButton");
-const bubble = document.getElementById("chatBubble");
 const chat = document.getElementById("chatFrame");
+const bubble = document.getElementById("chatBubble");
 
-/* Entrada suave */
-window.addEventListener("load",()=>{
-  setTimeout(()=> button.classList.add("show"),800);
-  setTimeout(()=> bubble.classList.add("show"),2000);
-  setTimeout(()=> bubble.classList.remove("show"),8000);
-});
-
-/* Abrir chat */
 button.addEventListener("click",()=>{
-  chat.classList.toggle("open");
-  bubble.classList.remove("show");
+  chat.style.display = chat.style.display === "block" ? "none" : "block";
+  bubble.style.display = "none";
 });
-
-/* Pulso inteligente */
-let pulseCount = 0;
-const pulseInterval = setInterval(()=>{
-  if(pulseCount < 2){
-    button.style.boxShadow="0 0 0 20px rgba(0,140,255,0.1)";
-    setTimeout(()=>{
-      button.style.boxShadow="0 10px 30px rgba(0,140,255,0.4)";
-    },300);
-    pulseCount++;
-  } else {
-    clearInterval(pulseInterval);
-  }
-},1500);
-
 </script>
 
 </body>
