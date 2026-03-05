@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GI Technology</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
 <style>
 
 /* RESET */
@@ -14,8 +12,7 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:'Inter',sans-serif;
-  scroll-behavior:smooth;
+  font-family:'Segoe UI',sans-serif;
 }
 
 body{
@@ -24,12 +21,13 @@ body{
   overflow-x:hidden;
 }
 
-/* FUNDO */
+/* FUNDO GRID TECNOLÓGICO */
 .tech-grid {
   position: fixed;
   width: 100%;
   height: 100%;
   background: #0a0f1f;
+  overflow: hidden;
   z-index: -1;
 }
 
@@ -39,10 +37,18 @@ body{
   width: 200%;
   height: 200%;
   background-image: 
-    linear-gradient(rgba(0, 140, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 140, 255, 0.07) 1px, transparent 1px);
+    linear-gradient(rgba(0, 140, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 140, 255, 0.08) 1px, transparent 1px);
   background-size: 60px 60px;
   animation: gridMove 25s linear infinite;
+}
+
+.tech-grid::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(0, 140, 255, 0.2), transparent 70%);
 }
 
 @keyframes gridMove {
@@ -68,6 +74,7 @@ body{
 
 .hero h1{
   font-size:48px;
+  font-weight:700;
 }
 
 .hero p{
@@ -82,17 +89,16 @@ body{
   padding:15px 35px;
   background:linear-gradient(90deg,#0066ff,#00aaff);
   border:none;
-  border-radius:10px;
-  font-weight:600;
+  border-radius:8px;
+  font-weight:bold;
   color:white;
   text-decoration:none;
   transition:0.3s;
-  box-shadow:0 10px 25px rgba(0,102,255,0.3);
 }
 
 .btn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 15px 40px rgba(0,102,255,0.6);
+  transform:scale(1.07);
+  box-shadow:0 10px 30px rgba(0,102,255,0.6);
 }
 
 /* SEÇÕES */
@@ -122,55 +128,29 @@ section p{
 }
 
 .card{
-  background:rgba(255,255,255,0.04);
-  backdrop-filter:blur(15px);
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
   padding:30px;
   width:280px;
   border-radius:15px;
-  border:1px solid rgba(255,255,255,0.06);
-  transition:0.4s;
+  transition:0.3s;
 }
 
 .card:hover{
   transform:translateY(-10px);
-  background:rgba(0,102,255,0.12);
-  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+  background:rgba(0,102,255,0.15);
 }
 
-/* CONTATO */
-.contact{
+.card h3{
+  margin-bottom:15px;
+}
+
+/* CTA FINAL */
+.cta{
   background:linear-gradient(135deg,#001f4d,#003b8f);
   padding:80px 20px;
 }
 
-.contact-buttons{
-  margin-top:40px;
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  flex-wrap:wrap;
-}
-
-.contact-btn{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:15px 30px;
-  border-radius:10px;
-  text-decoration:none;
-  color:white;
-  font-weight:600;
-  background:rgba(255,255,255,0.08);
-  transition:0.3s;
-  border:1px solid rgba(255,255,255,0.1);
-}
-
-.contact-btn:hover{
-  transform:translateY(-3px);
-  background:rgba(0,102,255,0.2);
-}
-
-/* FOOTER */
 footer{
   padding:30px;
   text-align:center;
@@ -178,12 +158,18 @@ footer{
   background:#0f172a;
 }
 
-/* CHAT */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0px); }
+/* RESPONSIVO */
+@media(max-width:768px){
+  .hero h1{
+    font-size:32px;
+  }
+  .services{
+    flex-direction:column;
+    align-items:center;
+  }
 }
+
+/* ================= CHATBOT ================= */
 
 #chatButton {
   position: fixed;
@@ -194,10 +180,9 @@ footer{
   border-radius: 50%;
   border: none;
   cursor: pointer;
+  padding: 0;
   overflow: hidden;
   z-index: 9999;
-  animation: float 4s ease-in-out infinite;
-  box-shadow: 0 0 20px rgba(0,140,255,0.4);
 }
 
 #chatButton img{
@@ -207,6 +192,7 @@ footer{
   border-radius:50%;
 }
 
+/* Bolinha verde online */
 #chatButton::after{
   content: "";
   position: absolute;
@@ -214,10 +200,45 @@ footer{
   right: 6px;
   width: 16px;
   height: 16px;
-  background: #00c3ff;
+  background: #00ff4c;
   border-radius: 50%;
   border: 3px solid #0a0f1f;
-  box-shadow: 0 0 8px #00c3ff;
+}
+
+/* Pulsar */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0,140,255,0.7); }
+  70% { box-shadow: 0 0 0 20px rgba(0,140,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,140,255,0); }
+}
+
+/* Balão informativo */
+#chatBubble{
+  position: fixed;
+  bottom: 115px;
+  right: 20px;
+  background: linear-gradient(135deg,#0066ff,#00aaff);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.4s;
+  max-width: 240px;
+}
+
+#chatBubble::after{
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  right: 25px;
+  width: 15px;
+  height: 15px;
+  background: #008cff;
+  transform: rotate(45deg);
 }
 
 #chatFrame {
@@ -228,8 +249,17 @@ footer{
   height: 520px;
   border: none;
   border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
   display: none;
   z-index: 9999;
+}
+
+@media(max-width:768px){
+  #chatFrame{
+    width: 92%;
+    right: 4%;
+    height: 70%;
+  }
 }
 
 </style>
@@ -247,44 +277,43 @@ footer{
 </div>
 
 <section>
+  <h2>Quem Somos</h2>
+  <p>A GI Technology é especializada no desenvolvimento de sistemas personalizados, automações empresariais e soluções digitais de alto desempenho.</p>
+</section>
+
+<section>
   <h2>Nossas Soluções</h2>
   <div class="services">
     <div class="card">
       <h3>Sistemas Web</h3>
-      <p>Plataformas personalizadas para gestão empresarial.</p>
+      <p>Plataformas personalizadas para gestão e operação empresarial.</p>
     </div>
     <div class="card">
-      <h3>Automação</h3>
-      <p>Reduza custos e aumente produtividade.</p>
+      <h3>Automação de Processos</h3>
+      <p>Reduza custos e aumente produtividade com tecnologia inteligente.</p>
     </div>
     <div class="card">
-      <h3>Soluções Sob Medida</h3>
-      <p>Tecnologia exclusiva para seu negócio.</p>
+      <h3>Desenvolvimento Sob Medida</h3>
+      <p>Soluções exclusivas para necessidades específicas do seu negócio.</p>
     </div>
   </div>
 </section>
 
-<section class="contact">
-  <h2>Contato Oficial</h2>
-  <p>Siga nosso perfil oficial e fale conosco diretamente.</p>
-
-  <div class="contact-buttons">
-    <a href="https://instagram.com/gitechnology.ofc" target="_blank" class="contact-btn">
-      📸 @gitechnology.ofc
-    </a>
-
-    <a href="https://wa.me/5513996068418" target="_blank" class="contact-btn">
-      💬 (13) 99606 8418
-    </a>
-  </div>
-</section>
+<div class="cta">
+  <h2>Pronto para transformar sua empresa com tecnologia?</h2>
+  <a href="https://wa.me/5513996068418" target="_blank" class="btn">Fale Conosco</a>
+</div>
 
 <footer>
   © 2026 GI Technology - Todos os direitos reservados.
 </footer>
 
+<div id="chatBubble">
+  💬 Dúvidas? A GI Tech responde!
+</div>
+
 <button id="chatButton">
-  <img src="https://i.postimg.cc/XJ3Z3r1Z/37F86CB4-66CF-4F9E-A917-4A0B25CF7C75.png">
+  <img src="https://i.postimg.cc/XJ3Z3r1Z/37F86CB4-66CF-4F9E-A917-4A0B25CF7C75.png" alt="Assistente Virtual GI Tech">
 </button>
 
 <iframe
@@ -295,9 +324,34 @@ footer{
 <script>
 const button = document.getElementById("chatButton");
 const chat = document.getElementById("chatFrame");
+const bubble = document.getElementById("chatBubble");
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    bubble.style.opacity = "1";
+    bubble.style.transform = "translateY(0)";
+  }, 2500);
+
+  setTimeout(() => {
+    bubble.style.opacity = "0";
+  }, 8500);
+});
+
+/* Pulsar apenas a cada 20 segundos */
+function pulseEffect(){
+  button.style.animation = "pulse 2s ease-in-out";
+
+  setTimeout(() => {
+    button.style.animation = "";
+  }, 2000);
+}
+
+setTimeout(pulseEffect, 3000);
+setInterval(pulseEffect, 20000);
 
 button.addEventListener("click", () => {
   chat.style.display = chat.style.display === "block" ? "none" : "block";
+  bubble.style.opacity = "0";
 });
 </script>
 
