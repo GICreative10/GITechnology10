@@ -12,178 +12,60 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:'Segoe UI',sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
   background:#0a0f1f;
   color:white;
-  overflow-x:hidden;
 }
 
-/* FUNDO GRID TECNOLÓGICO */
-.tech-grid {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: #0a0f1f;
-  overflow: hidden;
-  z-index: -1;
-}
-
-.tech-grid::before {
-  content: "";
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  background-image: 
-    linear-gradient(rgba(0, 140, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 140, 255, 0.08) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: gridMove 25s linear infinite;
-}
-
-.tech-grid::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(0, 140, 255, 0.2), transparent 70%);
-}
-
-@keyframes gridMove {
-  from { transform: translate(0,0); }
-  to { transform: translate(-60px,-60px); }
-}
-
-/* HERO */
+/* HERO EXEMPLO */
 .hero{
   height:100vh;
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
+  flex-direction:column;
   text-align:center;
-  padding:20px;
-}
-
-.logo{
-  width:220px;
-  margin-bottom:25px;
 }
 
 .hero h1{
-  font-size:48px;
-  font-weight:700;
+  font-size:42px;
+  background:linear-gradient(90deg,#00c6ff,#0072ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
 .hero p{
-  margin-top:20px;
-  font-size:20px;
-  max-width:700px;
-  opacity:0.85;
-}
-
-.btn{
-  margin-top:35px;
-  padding:15px 35px;
-  background:linear-gradient(90deg,#0066ff,#00aaff);
-  border:none;
-  border-radius:8px;
-  font-weight:bold;
-  color:white;
-  text-decoration:none;
-  transition:0.3s;
-}
-
-.btn:hover{
-  transform:scale(1.07);
-  box-shadow:0 10px 30px rgba(0,102,255,0.6);
-}
-
-/* SEÇÕES */
-section{
-  padding:100px 20px;
-  text-align:center;
-}
-
-section h2{
-  font-size:36px;
-  margin-bottom:20px;
-}
-
-section p{
-  max-width:700px;
-  margin:0 auto;
+  margin-top:15px;
+  font-size:18px;
   opacity:0.8;
 }
 
-/* SERVIÇOS */
-.services{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:30px;
-  margin-top:50px;
+/* ================= CHAT PREMIUM GI TECH ================= */
+
+/* BOTÃO */
+#chatButton{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  width:72px;
+  height:72px;
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+  overflow:hidden;
+  z-index:9999;
+  opacity:0;
+  transform:translateY(30px) scale(0.9);
+  transition:0.4s ease;
+  box-shadow:0 10px 30px rgba(0,140,255,0.4);
 }
 
-.card{
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-  padding:30px;
-  width:280px;
-  border-radius:15px;
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:translateY(-10px);
-  background:rgba(0,102,255,0.15);
-}
-
-.card h3{
-  margin-bottom:15px;
-}
-
-/* CTA FINAL */
-.cta{
-  background:linear-gradient(135deg,#001f4d,#003b8f);
-  padding:80px 20px;
-}
-
-footer{
-  padding:30px;
-  text-align:center;
-  opacity:0.6;
-  background:#0f172a;
-}
-
-/* RESPONSIVO */
-@media(max-width:768px){
-  .hero h1{
-    font-size:32px;
-  }
-  .services{
-    flex-direction:column;
-    align-items:center;
-  }
-}
-
-/* ================= CHATBOT ================= */
-
-#chatButton {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  overflow: hidden;
-  z-index: 9999;
-  animation: pulse 2s infinite;
+#chatButton.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
 }
 
 #chatButton img{
@@ -191,75 +73,90 @@ footer{
   height:100%;
   object-fit:cover;
   border-radius:50%;
+  transition:0.3s;
 }
 
-/* Bolinha verde online */
+#chatButton:hover{
+  transform:scale(1.08);
+  box-shadow:0 15px 40px rgba(0,140,255,0.7);
+}
+
+/* BOLINHA ONLINE */
 #chatButton::after{
-  content: "";
-  position: absolute;
-  bottom: 6px;
-  right: 6px;
-  width: 16px;
-  height: 16px;
-  background: #00ff4c;
-  border-radius: 50%;
-  border: 3px solid #0a0f1f;
+  content:"";
+  position:absolute;
+  bottom:6px;
+  right:6px;
+  width:15px;
+  height:15px;
+  background:#00ff66;
+  border-radius:50%;
+  border:3px solid #0a0f1f;
 }
 
-/* Pulsar */
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(0,140,255,0.7); }
-  70% { box-shadow: 0 0 0 20px rgba(0,140,255,0); }
-  100% { box-shadow: 0 0 0 0 rgba(0,140,255,0); }
-}
-
-/* Balão informativo */
+/* BALÃO */
 #chatBubble{
-  position: fixed;
-  bottom: 115px;
-  right: 20px;
-  background: linear-gradient(135deg,#0066ff,#00aaff);
-  color: white;
-  padding: 14px 20px;
-  border-radius: 25px;
-  font-size: 14px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-  z-index: 9999;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: 0.4s;
-  max-width: 240px;
+  position:fixed;
+  bottom:115px;
+  right:25px;
+  background:white;
+  color:#111;
+  padding:14px 18px;
+  border-radius:18px;
+  font-size:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  z-index:9999;
+  opacity:0;
+  transform:translateY(15px);
+  transition:0.4s ease;
 }
 
-#chatBubble::after{
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  right: 25px;
-  width: 15px;
-  height: 15px;
-  background: #008cff;
-  transform: rotate(45deg);
+#chatBubble.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
-#chatFrame {
-  position: fixed;
-  bottom: 110px;
-  right: 20px;
-  width: 360px;
-  height: 520px;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-  display: none;
-  z-index: 9999;
+.typing span{
+  animation:blink 1.4s infinite both;
+}
+
+.typing span:nth-child(2){animation-delay:0.2s;}
+.typing span:nth-child(3){animation-delay:0.4s;}
+
+@keyframes blink{
+  0%{opacity:.2}
+  20%{opacity:1}
+  100%{opacity:.2}
+}
+
+/* CHAT FRAME */
+#chatFrame{
+  position:fixed;
+  bottom:110px;
+  right:25px;
+  width:370px;
+  height:520px;
+  border:none;
+  border-radius:18px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  opacity:0;
+  transform:scale(0.8);
+  transition:0.3s ease;
+  z-index:9999;
+  pointer-events:none;
+}
+
+#chatFrame.open{
+  opacity:1;
+  transform:scale(1);
+  pointer-events:auto;
 }
 
 @media(max-width:768px){
   #chatFrame{
-    width: 92%;
-    right: 4%;
-    height: 70%;
+    width:94%;
+    right:3%;
+    height:70%;
   }
 }
 
@@ -268,83 +165,63 @@ footer{
 
 <body>
 
-<div class="tech-grid"></div>
-
 <div class="hero">
-  <img src="https://i.postimg.cc/HnrnR8TG/0F9CFA08-FF9C-4828-9FDD-E0586E74F73D.png" class="logo">
-  <h1>Desenvolvimento de Sistemas e Soluções Digitais</h1>
-  <p>Criamos softwares, sistemas web e soluções tecnológicas sob medida para empresas que desejam crescer com eficiência e inovação.</p>
-  <a href="https://wa.me/5513996068418" target="_blank" class="btn">Solicitar Projeto</a>
+  <h1>GI Technology</h1>
+  <p>Soluções em Sites, Sistemas e Inteligência Artificial</p>
 </div>
-
-<section>
-  <h2>Quem Somos</h2>
-  <p>A GI Technology é especializada no desenvolvimento de sistemas personalizados, automações empresariais e soluções digitais de alto desempenho.</p>
-</section>
-
-<section>
-  <h2>Nossas Soluções</h2>
-  <div class="services">
-    <div class="card">
-      <h3>Sistemas Web</h3>
-      <p>Plataformas personalizadas para gestão e operação empresarial.</p>
-    </div>
-    <div class="card">
-      <h3>Automação de Processos</h3>
-      <p>Reduza custos e aumente produtividade com tecnologia inteligente.</p>
-    </div>
-    <div class="card">
-      <h3>Desenvolvimento Sob Medida</h3>
-      <p>Soluções exclusivas para necessidades específicas do seu negócio.</p>
-    </div>
-  </div>
-</section>
-
-<div class="cta">
-  <h2>Pronto para transformar sua empresa com tecnologia?</h2>
-  <a href="https://wa.me/5513996068418" target="_blank" class="btn">Fale Conosco</a>
-</div>
-
-<footer>
-  © 2026 GI Technology - Todos os direitos reservados.
-</footer>
 
 <!-- BALÃO -->
 <div id="chatBubble">
-  💬 Dúvidas? A GI Tech responde!
+  <strong>GI Tech</strong> está online<br>
+  <span class="typing">
+    digitando<span>.</span><span>.</span><span>.</span>
+  </span>
 </div>
 
-<!-- BOTÃO CHAT -->
+<!-- BOTÃO -->
 <button id="chatButton">
   <img src="https://i.postimg.cc/XJ3Z3r1Z/37F86CB4-66CF-4F9E-A917-4A0B25CF7C75.png" alt="Assistente Virtual GI Tech">
 </button>
 
-<!-- IFRAME -->
+<!-- CHAT BOT -->
 <iframe
   id="chatFrame"
-  src="https://cdn.botpress.cloud/webchat/v3.6/shareable.html?configUrl=https://files.bpcontent.cloud/2026/03/04/23/20260304232304-ZKJ43EGK.json">
+  src="https://cdn.botpress.cloud/webchat/v3.6/shareable.html?configUrl=https://files.bpcontent.cloud/2026/03/04/23/20260304232304-ZKJ43EGK.json&locale=pt-BR&placeholder=Digite%20sua%20mensagem...">
 </iframe>
 
 <script>
+
 const button = document.getElementById("chatButton");
-const chat = document.getElementById("chatFrame");
 const bubble = document.getElementById("chatBubble");
+const chat = document.getElementById("chatFrame");
 
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    bubble.style.opacity = "1";
-    bubble.style.transform = "translateY(0)";
-  }, 2500);
-
-  setTimeout(() => {
-    bubble.style.opacity = "0";
-  }, 8500);
+/* Entrada suave */
+window.addEventListener("load",()=>{
+  setTimeout(()=> button.classList.add("show"),800);
+  setTimeout(()=> bubble.classList.add("show"),2000);
+  setTimeout(()=> bubble.classList.remove("show"),8000);
 });
 
-button.addEventListener("click", () => {
-  chat.style.display = chat.style.display === "block" ? "none" : "block";
-  bubble.style.opacity = "0";
+/* Abrir chat */
+button.addEventListener("click",()=>{
+  chat.classList.toggle("open");
+  bubble.classList.remove("show");
 });
+
+/* Pulso inteligente */
+let pulseCount = 0;
+const pulseInterval = setInterval(()=>{
+  if(pulseCount < 2){
+    button.style.boxShadow="0 0 0 20px rgba(0,140,255,0.1)";
+    setTimeout(()=>{
+      button.style.boxShadow="0 10px 30px rgba(0,140,255,0.4)";
+    },300);
+    pulseCount++;
+  } else {
+    clearInterval(pulseInterval);
+  }
+},1500);
+
 </script>
 
 </body>
