@@ -173,6 +173,51 @@ footer{
   }
 }
 
+/* ================= CHATBOT ================= */
+
+#chatButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg,#0066ff,#00aaff);
+  border-radius: 50%;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  z-index: 9999;
+  transition: 0.3s;
+}
+
+#chatButton:hover {
+  transform: scale(1.1);
+}
+
+#chatFrame {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 360px;
+  height: 520px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  display: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+@media(max-width:768px){
+  #chatFrame{
+    width: 90%;
+    right: 5%;
+    height: 70%;
+  }
+}
+
 </style>
 </head>
 
@@ -218,6 +263,24 @@ footer{
 <footer>
   © 2026 GI Technology - Todos os direitos reservados.
 </footer>
+
+<!-- BOTÃO CHAT -->
+<button id="chatButton">💬</button>
+
+<!-- IFRAME BOTPRESS -->
+<iframe
+  id="chatFrame"
+  src="https://cdn.botpress.cloud/webchat/v3.6/shareable.html?configUrl=https://files.bpcontent.cloud/2026/03/04/23/20260304232304-ZKJ43EGK.json">
+</iframe>
+
+<script>
+  const button = document.getElementById("chatButton");
+  const chat = document.getElementById("chatFrame");
+
+  button.addEventListener("click", () => {
+    chat.style.display = chat.style.display === "block" ? "none" : "block";
+  });
+</script>
 
 </body>
 </html>
