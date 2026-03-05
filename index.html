@@ -151,10 +151,6 @@ section p{
   padding:80px 20px;
 }
 
-.cta h2{
-  margin-bottom:20px;
-}
-
 footer{
   padding:30px;
   text-align:center;
@@ -179,26 +175,76 @@ footer{
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg,#0066ff,#00aaff);
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   border: none;
-  color: white;
-  font-size: 28px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  padding: 0;
+  overflow: hidden;
   z-index: 9999;
-  transition: 0.3s;
+  animation: pulse 2s infinite;
 }
 
-#chatButton:hover {
-  transform: scale(1.1);
+#chatButton img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
+}
+
+/* Bolinha verde online */
+#chatButton::after{
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  width: 16px;
+  height: 16px;
+  background: #00ff4c;
+  border-radius: 50%;
+  border: 3px solid #0a0f1f;
+}
+
+/* Pulsar */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0,140,255,0.7); }
+  70% { box-shadow: 0 0 0 20px rgba(0,140,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,140,255,0); }
+}
+
+/* Balão informativo */
+#chatBubble{
+  position: fixed;
+  bottom: 115px;
+  right: 20px;
+  background: linear-gradient(135deg,#0066ff,#00aaff);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.4s;
+  max-width: 240px;
+}
+
+#chatBubble::after{
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  right: 25px;
+  width: 15px;
+  height: 15px;
+  background: #008cff;
+  transform: rotate(45deg);
 }
 
 #chatFrame {
   position: fixed;
-  bottom: 90px;
+  bottom: 110px;
   right: 20px;
   width: 360px;
   height: 520px;
@@ -207,13 +253,12 @@ footer{
   box-shadow: 0 8px 30px rgba(0,0,0,0.5);
   display: none;
   z-index: 9999;
-  overflow: hidden;
 }
 
 @media(max-width:768px){
   #chatFrame{
-    width: 90%;
-    right: 5%;
+    width: 92%;
+    right: 4%;
     height: 70%;
   }
 }
@@ -226,7 +271,7 @@ footer{
 <div class="tech-grid"></div>
 
 <div class="hero">
-  <img src="https://i.postimg.cc/HnrnR8TG/0F9CFA08-FF9C-4828-9FDD-E0586E74F73D.png" alt="Logo GI Technology" class="logo">
+  <img src="https://i.postimg.cc/HnrnR8TG/0F9CFA08-FF9C-4828-9FDD-E0586E74F73D.png" class="logo">
   <h1>Desenvolvimento de Sistemas e Soluções Digitais</h1>
   <p>Criamos softwares, sistemas web e soluções tecnológicas sob medida para empresas que desejam crescer com eficiência e inovação.</p>
   <a href="https://wa.me/5513996068418" target="_blank" class="btn">Solicitar Projeto</a>
@@ -264,22 +309,42 @@ footer{
   © 2026 GI Technology - Todos os direitos reservados.
 </footer>
 
-<!-- BOTÃO CHAT -->
-<button id="chatButton">💬</button>
+<!-- BALÃO -->
+<div id="chatBubble">
+  💬 Dúvidas? A GI Tech responde!
+</div>
 
-<!-- IFRAME BOTPRESS -->
+<!-- BOTÃO CHAT -->
+<button id="chatButton">
+  <img src="https://i.postimg.cc/XJ3Z3r1Z/37F86CB4-66CF-4F9E-A917-4A0B25CF7C75.png" alt="Assistente Virtual GI Tech">
+</button>
+
+<!-- IFRAME -->
 <iframe
   id="chatFrame"
   src="https://cdn.botpress.cloud/webchat/v3.6/shareable.html?configUrl=https://files.bpcontent.cloud/2026/03/04/23/20260304232304-ZKJ43EGK.json">
 </iframe>
 
 <script>
-  const button = document.getElementById("chatButton");
-  const chat = document.getElementById("chatFrame");
+const button = document.getElementById("chatButton");
+const chat = document.getElementById("chatFrame");
+const bubble = document.getElementById("chatBubble");
 
-  button.addEventListener("click", () => {
-    chat.style.display = chat.style.display === "block" ? "none" : "block";
-  });
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    bubble.style.opacity = "1";
+    bubble.style.transform = "translateY(0)";
+  }, 2500);
+
+  setTimeout(() => {
+    bubble.style.opacity = "0";
+  }, 8500);
+});
+
+button.addEventListener("click", () => {
+  chat.style.display = chat.style.display === "block" ? "none" : "block";
+  bubble.style.opacity = "0";
+});
 </script>
 
 </body>
